@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>과산화초산 자동희석기 상세페이지</title>
+</head>
+<body style="margin:0;padding:0;background:#fff;">
+
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+.prs-wrap{max-width:900px;margin:0 auto;background:#fff;border-radius:16px;overflow:hidden;font-family:'Pretendard',-apple-system,sans-serif;color:#2d3436;font-size:14px;line-height:1.7;}
+.prs-header{text-align:center;padding:44px 50px 40px;border-bottom:1px solid #e9ecef;}
+.prs-logo-text{display:inline-block;font-size:28px;font-weight:900;color:#268B7C;letter-spacing:-0.5px;margin-bottom:28px;line-height:1.2;}
+.prs-badge{display:inline-block;background:#e7f3f1;color:#268B7C;padding:7px 20px;border-radius:50px;font-size:13px;font-weight:700;margin-bottom:22px;}
+.prs-copy{font-size:20px;font-weight:400;color:#444;word-break:keep-all;margin-bottom:18px;line-height:1.8;}
+.prs-copy strong{color:#268B7C;font-weight:800;}
+.prs-pkg{font-size:13px;color:#636e72;background:#f5f7f6;padding:9px 18px;border-radius:8px;display:inline-block;}
+.prs-sec{padding:36px 50px;border-bottom:1px solid #e9ecef;}
+.prs-head{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.prs-num{background:#268B7C;color:#fff;padding:4px 12px;border-radius:20px;font-size:13px;font-weight:800;}
+.prs-title{font-size:20px;font-weight:800;margin:0;color:#2d3436;}
+.prs-fg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.prs-fc{border:1px solid #e9ecef;border-radius:12px;padding:18px 16px;font-size:13.5px;line-height:1.6;display:flex;align-items:flex-start;gap:8px;}
+.prs-fc::before{content:"•";color:#268B7C;font-weight:900;flex-shrink:0;}
+.prs-sbox{background:#f5f7f6;border-radius:12px;padding:24px 28px;font-size:14px;color:#636e72;line-height:1.8;word-break:keep-all;}
+.prs-sbox p{margin:0 0 6px;}
+.prs-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.prs-tag{background:#fff;border:1px solid #268B7C;color:#268B7C;border-radius:20px;padding:4px 14px;font-size:12.5px;font-weight:700;}
+.prs-csec{padding:36px 50px;}
+.prs-cin{text-align:center;padding:40px;border:1.5px solid #e9ecef;border-radius:16px;}
+.prs-cin p{color:#636e72;margin:0 0 24px;font-size:14px;}
+.prs-bc{display:inline-block;background:#268B7C;color:#fff;font-size:16px;font-weight:700;padding:18px 56px;border-radius:12px;text-decoration:none;}
+
+/* 제품 크기 스펙 */
+.prs-spec-box{background:#f5f7f6;border-radius:12px;padding:24px 28px;}
+.prs-spec-inner{display:flex;align-items:center;}
+.prs-spec-dim{text-align:center;padding:0 16px;}
+.prs-spec-dim:first-child{padding-left:0;}
+.prs-spec-val{font-size:14px;font-weight:700;color:#268B7C;line-height:1.8;}
+.prs-spec-unit{font-size:13px;color:#636e72;}
+.prs-spec-sep{font-size:14px;color:#b2bec3;}
+
+/* 사용 방법 단일 박스 리스트 */
+.prs-steps{background:#f5f7f6;border-radius:12px;padding:24px 28px;}
+.prs-step{display:flex;align-items:baseline;gap:10px;padding:9px 0;border-bottom:1px solid #e9ecef;font-size:13.5px;line-height:1.7;word-break:keep-all;}
+.prs-step:first-child{padding-top:0;}
+.prs-step:last-child{border-bottom:none;padding-bottom:0;}
+.prs-step-num{font-weight:800;color:#268B7C;flex-shrink:0;min-width:16px;}
+.prs-step-title{font-weight:800;color:#2d3436;white-space:nowrap;}
+.prs-step-sep{color:#b2bec3;margin:0 4px;flex-shrink:0;}
+.prs-step-desc{color:#636e72;}
+
+@media(max-width:768px){
+  .prs-header{padding:44px 20px;}
+  .prs-sec,.prs-csec{padding:36px 20px;}
+  .prs-fg{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:500px){
+  .prs-wrap{border-radius:0;}
+  .prs-header{padding:32px 16px;}
+  .prs-sec,.prs-csec{padding:28px 16px;}
+  .prs-copy{font-size:16px;}
+  .prs-title{font-size:17px;}
+  .prs-logo-text{font-size:22px;}
+  .prs-fg{grid-template-columns:repeat(2,1fr);gap:8px;}
+  .prs-fc{font-size:12.5px;padding:14px 12px;}
+  .prs-tag{font-size:12px;padding:4px 10px;}
+  .prs-cin{padding:20px 16px;}
+  .prs-bc{font-size:14px;padding:14px 28px;}
+  .prs-steps{padding:20px 16px;}
+  .prs-spec-box{padding:20px 16px;}
+}
+</style>
+
+<div class="prs-wrap">
+
+    <!-- HEADER -->
+    <div class="prs-header">
+        <div class="prs-logo-text">과산화초산 자동희석기</div><br>
+        <span class="prs-badge">자동희석 / 농도 조절 / 현장 맞춤형 설계</span>
+        <p class="prs-copy">
+            사용 현장에서 손쉽게 과산화초산의 농도를 조절할 수 있도록 설계된<br>
+            <strong>자동희석기</strong>입니다.
+        </p>
+        <div class="prs-pkg"><strong>호환 용기</strong> &nbsp;|&nbsp; 페라스타 1L · 5L</div>
+    </div>
+
+    <!-- 01 주요 특징 -->
+    <div class="prs-sec">
+        <div class="prs-head"><span class="prs-num">01</span><h2 class="prs-title">주요 특징</h2></div>
+        <div class="prs-fg">
+            <div class="prs-fc">누구나 원하는 농도로 손쉽게 조절 가능</div>
+            <div class="prs-fc">역류 방지 설계로 과산화초산 역류 현상 억제</div>
+            <div class="prs-fc">유입 과산화초산을 한눈에 확인 가능</div>
+        </div>
+    </div>
+
+    <!-- 02 사용처 -->
+    <div class="prs-sec">
+        <div class="prs-head"><span class="prs-num">02</span><h2 class="prs-title">사용처</h2></div>
+        <div class="prs-sbox">
+            <p>과산화초산을 사용하는 다양한 현장에 적용할 수 있습니다.</p>
+            <div class="prs-tags">
+                <span class="prs-tag">학교 급식실</span>
+                <span class="prs-tag">병원 급식실</span>
+                <span class="prs-tag">식품 제조 시설</span>
+                <span class="prs-tag">식품 가공 현장</span>
+                <span class="prs-tag">기타 과산화초산 사용 현장</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 03 제품 크기 -->
+    <div class="prs-sec">
+        <div class="prs-head"><span class="prs-num">03</span><h2 class="prs-title">제품 크기</h2></div>
+        <div class="prs-spec-box">
+            <div class="prs-spec-inner">
+                <div class="prs-spec-dim">
+                    <div class="prs-spec-val">325</div>
+                    <div class="prs-spec-unit">W (mm)</div>
+                </div>
+                <div class="prs-spec-sep">&nbsp;×&nbsp;</div>
+                <div class="prs-spec-dim">
+                    <div class="prs-spec-val">450</div>
+                    <div class="prs-spec-unit">H (mm)</div>
+                </div>
+                <div class="prs-spec-sep">&nbsp;×&nbsp;</div>
+                <div class="prs-spec-dim">
+                    <div class="prs-spec-val">180</div>
+                    <div class="prs-spec-unit">D (mm)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 04 사용 방법 -->
+    <div class="prs-sec">
+        <div class="prs-head"><span class="prs-num">04</span><h2 class="prs-title">사용 방법</h2></div>
+        <div class="prs-steps">
+            <div class="prs-step">
+                <span class="prs-step-num">1</span>
+                <span class="prs-step-title">원액 장착</span>
+                <span class="prs-step-sep">—</span>
+                <span class="prs-step-desc">페라스타 1L / 5L 용기 개봉 후 노즐을 바닥 끝까지 밀착해 넣습니다.</span>
+            </div>
+            <div class="prs-step">
+                <span class="prs-step-num">2</span>
+                <span class="prs-step-title">농도 설정</span>
+                <span class="prs-step-sep">—</span>
+                <span class="prs-step-desc">다이얼을 돌려 과일·야채 소독 적정 범위인 <strong>50~80 ppm</strong>에 맞춥니다.</span>
+            </div>
+            <div class="prs-step">
+                <span class="prs-step-num">3</span>
+                <span class="prs-step-title">다이얼 조절</span>
+                <span class="prs-step-sep">—</span>
+                <span class="prs-step-desc">시계 방향(↻)은 농도 높음, 반시계 방향(↺)은 농도 낮음입니다.</span>
+            </div>
+            <div class="prs-step">
+                <span class="prs-step-num">4</span>
+                <span class="prs-step-title">거품 확인</span>
+                <span class="prs-step-sep">—</span>
+                <span class="prs-step-desc">희석수에서 미세한 기포가 발생하는지 확인 후 측정을 준비합니다.</span>
+            </div>
+            <div class="prs-step">
+                <span class="prs-step-num">5</span>
+                <span class="prs-step-title">최종 검증</span>
+                <span class="prs-step-sep">—</span>
+                <span class="prs-step-desc">페라스트립 320 시험지로 실측 농도가 설정값과 일치하는지 확인합니다.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 05 전문 상담 및 견적 문의 -->
+    <div class="prs-csec">
+        <div class="prs-head"><span class="prs-num">05</span><h2 class="prs-title">전문 상담 및 견적 문의</h2></div>
+        <div class="prs-cin">
+            <p>대량 구매 및 도입 관련 상세 견적을 안내해 드립니다.</p>
+            <a href="http://perastar.webmind.kr/common/contact/write.php" target="_blank" class="prs-bc">실시간 견적 문의하기</a>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
