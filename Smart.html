@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>페라스타 그린 수경재배 적용 실증사례</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark: #1a3d2b;
+    --green-mid: #2d6a4f;
+    --green-accent: #52b788;
+    --green-light: #b7e4c7;
+    --green-pale: #f0faf4;
+    --orange: #e07b39;
+    --orange-light: #fff3eb;
+    --gray-100: #f7f8f6;
+    --gray-200: #e8ebe6;
+    --gray-400: #9aaa95;
+    --gray-700: #3d4a3a;
+    --white: #ffffff;
+    --text-main: #1e2b1b;
+    --text-sub: #5a6b55;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--gray-100);
+    color: var(--text-main);
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--green-dark);
+    padding: 56px 0 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 80% at 80% 50%, rgba(82,183,136,.18) 0%, transparent 70%);
+  }
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(82,183,136,.15);
+    border: 1px solid rgba(82,183,136,.35);
+    border-radius: 100px;
+    padding: 5px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--green-accent);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero-badge span { width: 7px; height: 7px; background: var(--green-accent); border-radius: 50%; display: inline-block; }
+  .hero h1 {
+    font-size: clamp(22px, 4vw, 34px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.35;
+    margin-bottom: 14px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--green-accent);
+  }
+  .hero-sub {
+    color: rgba(255,255,255,.55);
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  /* ── KEY METRICS ── */
+  .metrics-bar {
+    background: var(--green-mid);
+    padding: 0;
+  }
+  .metrics-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .metric-item {
+    padding: 22px 0;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,.12);
+  }
+  .metric-item:last-child { border-right: none; }
+  .metric-val {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--white);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: -.02em;
+  }
+  .metric-val sup { font-size: 14px; vertical-align: super; }
+  .metric-label { font-size: 11px; color: rgba(255,255,255,.55); margin-top: 3px; letter-spacing: .04em; }
+
+  /* ── SUMMARY CHIPS ── */
+  .summary-chips {
+    background: var(--orange-light);
+    border-bottom: 2px solid #f3c8a8;
+  }
+  .chips-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .chips-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--orange);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-right: 4px;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--white);
+    border: 1.5px solid #f3c8a8;
+    border-radius: 100px;
+    padding: 4px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--orange);
+  }
+  .chip::before { content: '✔'; font-size: 11px; }
+
+  /* ── CONTENT ── */
+  .content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 32px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  /* ── SECTION CARD ── */
+  .card {
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.04);
+  }
+  .card-header {
+    padding: 18px 28px;
+    background: var(--green-pale);
+    border-bottom: 1px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card-header h2 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--green-dark);
+    letter-spacing: -.01em;
+  }
+  .card-icon {
+    width: 28px;
+    height: 28px;
+    background: var(--green-mid);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+  .card-body { padding: 24px 28px; }
+
+  /* ── OVERVIEW ── */
+  .overview-text {
+    font-size: 14.5px;
+    color: var(--text-sub);
+    line-height: 1.8;
+  }
+
+  /* ── CONDITIONS GRID ── */
+  .conditions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .cond-block {
+    background: var(--gray-100);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .cond-block h3 {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--green-mid);
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .cond-list { list-style: none; }
+  .cond-list li {
+    font-size: 13.5px;
+    color: var(--text-sub);
+    padding: 4px 0;
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    border-bottom: 1px dashed var(--gray-200);
+  }
+  .cond-list li:last-child { border-bottom: none; }
+  .cond-list li .k { font-weight: 600; color: var(--text-main); white-space: nowrap; }
+
+  /* ── TREATMENT TABLE ── */
+  .treat-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .treat-table thead tr { background: var(--green-dark); }
+  .treat-table thead th {
+    padding: 11px 16px;
+    color: var(--white);
+    font-weight: 600;
+    text-align: left;
+    font-size: 13px;
+    letter-spacing: .02em;
+  }
+  .treat-table tbody tr:nth-child(even) { background: var(--gray-100); }
+  .treat-table tbody td { padding: 12px 16px; color: var(--text-sub); vertical-align: top; }
+  .treat-table tbody td:first-child { font-weight: 700; color: var(--text-main); }
+  .badge-t1 {
+    display: inline-block;
+    background: #e8ebe6;
+    color: var(--gray-700);
+    border-radius: 6px;
+    padding: 2px 10px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .badge-t2 {
+    display: inline-block;
+    background: var(--green-light);
+    color: var(--green-dark);
+    border-radius: 6px;
+    padding: 2px 10px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .dosage-note {
+    margin-top: 14px;
+    background: var(--orange-light);
+    border-left: 3px solid var(--orange);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #7a4520;
+  }
+  .dosage-note strong { display: block; margin-bottom: 4px; color: var(--orange); font-size: 12px; letter-spacing: .05em; text-transform: uppercase; }
+
+  /* ── PHOTO GRID ── */
+  .photo-section-head {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    margin-bottom: 2px;
+  }
+  .photo-col-label {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    padding: 8px 0 6px;
+    background: var(--gray-100);
+  }
+  .photo-grid-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 3px;
+    background: var(--gray-200);
+  }
+  .photo-cell {
+    position: relative;
+    background: var(--gray-200);
+    aspect-ratio: 4/3;
+    overflow: hidden;
+  }
+  .photo-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* placeholder when no image */
+  .photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #dde8d9;
+    gap: 8px;
+  }
+  .photo-placeholder .ph-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--green-mid);
+    color: white;
+    font-weight: 900;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+  }
+  .photo-placeholder .ph-txt { font-size: 11px; color: var(--green-mid); font-weight: 500; }
+
+  .photo-row-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0,0,0,.62);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 6px;
+    letter-spacing: .04em;
+    backdrop-filter: blur(4px);
+  }
+  .photo-badge {
+    position: absolute;
+    bottom: 0;
+    left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,.72));
+    padding: 24px 10px 8px;
+    font-size: 11.5px;
+    color: rgba(255,255,255,.9);
+    font-weight: 500;
+  }
+  .photo-badge.bad { }
+  .photo-badge.good { }
+  .photo-num {
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(255,255,255,.5);
+    font-weight: 500;
+  }
+
+  /* ── RESULTS TABLE ── */
+  .results-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .results-table thead tr { background: var(--green-dark); }
+  .results-table thead th {
+    padding: 11px 16px;
+    color: var(--white);
+    font-weight: 600;
+    font-size: 13px;
+    text-align: center;
+  }
+  .results-table thead th:first-child { text-align: left; }
+  .results-table tbody tr { border-bottom: 1px solid var(--gray-200); }
+  .results-table tbody tr:last-child { border-bottom: none; }
+  .results-table tbody td {
+    padding: 12px 16px;
+    text-align: center;
+    color: var(--text-sub);
+    font-size: 13.5px;
+  }
+  .results-table tbody td:first-child { text-align: left; font-weight: 600; color: var(--text-main); }
+  .val-bad { color: #c0392b; font-weight: 700; font-family: 'DM Mono', monospace; }
+  .val-good { color: var(--green-mid); font-weight: 700; font-family: 'DM Mono', monospace; }
+  .up-arrow::after { content: ' ↑'; color: var(--green-accent); font-size: 12px; }
+
+  /* ── ROOT STATUS ── */
+  .root-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .root-card {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1.5px solid var(--gray-200);
+  }
+  .root-card-head {
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .root-card-head.bad { background: #fdf0f0; color: #c0392b; border-bottom: 1.5px solid #f5c6c6; }
+  .root-card-head.good { background: var(--green-pale); color: var(--green-dark); border-bottom: 1.5px solid var(--green-light); }
+  .root-card-body { padding: 14px 16px; }
+  .root-item {
+    font-size: 13px;
+    color: var(--text-sub);
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px dashed var(--gray-200);
+  }
+  .root-item:last-child { border-bottom: none; }
+  .dot-bad { width: 8px; height: 8px; border-radius: 50%; background: #e74c3c; flex-shrink: 0; }
+  .dot-good { width: 8px; height: 8px; border-radius: 50%; background: var(--green-accent); flex-shrink: 0; }
+
+  /* ── CONCLUSION ── */
+  .conclusion-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .concl-item {
+    background: var(--green-pale);
+    border: 1.5px solid var(--green-light);
+    border-radius: 10px;
+    padding: 16px 18px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .concl-icon { font-size: 22px; }
+  .concl-text { font-size: 13.5px; color: var(--text-sub); line-height: 1.65; }
+  .concl-text strong { display: block; font-weight: 700; color: var(--text-main); margin-bottom: 3px; font-size: 14px; }
+  .future-box {
+    background: var(--gray-100);
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    gap: 16px;
+  }
+  .future-box .label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--green-mid);
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+  .future-items { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .future-items li {
+    font-size: 13.5px;
+    color: var(--text-sub);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .future-items li::before { content: '→'; color: var(--green-accent); font-weight: 700; }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--green-dark);
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: rgba(255,255,255,.3);
+    letter-spacing: .04em;
+  }
+
+  @media (max-width: 600px) {
+    .conditions-grid, .root-grid, .conclusion-grid { grid-template-columns: 1fr; }
+    .metrics-inner { grid-template-columns: 1fr; }
+    .metric-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .metric-item:last-child { border-bottom: none; }
+    .photo-section-head, .photo-grid-wrap { grid-template-columns: 1fr 1fr; }
+    .photo-cell:nth-child(3), .photo-cell:nth-child(6) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge"><span></span> 실증사례 보고서</div>
+    <h1>페라스타 그린<em>(과초산)</em><br>수경재배 적용 실증사례</h1>
+    <p class="hero-sub">병원균 억제 및 생육 개선 효과 확인 · 작물: 유럽형 상추(크리스탈)</p>
+  </div>
+</div>
+
+<!-- KEY METRICS -->
+<div class="metrics-bar">
+  <div class="metrics-inner">
+    <div class="metric-item">
+      <div class="metric-val">252<sup>g</sup></div>
+      <div class="metric-label">처리구 평균 생체중</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-val">85<sup>%</sup></div>
+      <div class="metric-label">처리구 상품율</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-val">4<sup>ppm</sup></div>
+      <div class="metric-label">과초산 처리 농도</div>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY CHIPS -->
+<div class="summary-chips">
+  <div class="chips-inner">
+    <span class="chips-label">핵심 효과</span>
+    <span class="chip">녹조 억제</span>
+    <span class="chip">뿌리 건강 유지</span>
+    <span class="chip">수확량 증가</span>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- 개요 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🌿</div>
+      <h2>개요</h2>
+    </div>
+    <div class="card-body">
+      <p class="overview-text">
+        페라스타 그린(과초산 기반 살균제)을 수경재배 환경에 적용하여 <strong>양액 내 미생물 제어</strong> 및 <strong>작물 생육에 미치는 영향</strong>을 평가한 실증시험입니다. 시험은 약 6주(파종~수확)에 걸쳐 진행되었으며, 대조구와 처리구를 비교하는 방식으로 수행되었습니다.
+      </p>
+    </div>
+  </div>
+
+  <!-- 시험 조건 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔬</div>
+      <h2>시험 조건</h2>
+    </div>
+    <div class="card-body">
+      <div class="conditions-grid">
+        <div class="cond-block">
+          <h3>재배 환경</h3>
+          <ul class="cond-list">
+            <li><span class="k">온도</span> 20 ~ 24°C</li>
+            <li><span class="k">습도</span> 50 ~ 70%</li>
+            <li><span class="k">광량</span> PPFD 230 μmol/m²/s</li>
+            <li><span class="k">광주기</span> 16시간 / 8시간</li>
+          </ul>
+        </div>
+        <div class="cond-block">
+          <h3>양액 조건</h3>
+          <ul class="cond-list">
+            <li><span class="k">pH</span> 5.5 ~ 6.5</li>
+            <li><span class="k">EC</span> 1.5 ~ 1.8 dS/m</li>
+            <li><span class="k">작물</span> 유럽형 상추 (크리스탈)</li>
+            <li><span class="k">기간</span> 약 6주</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 처리 조건 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">⚗️</div>
+      <h2>처리 조건</h2>
+    </div>
+    <div class="card-body">
+      <table class="treat-table">
+        <thead>
+          <tr>
+            <th>구분</th>
+            <th>처리명</th>
+            <th>과초산 농도</th>
+            <th>비고</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge-t1">T1</span></td>
+            <td>대조구</td>
+            <td>0 ppm</td>
+            <td>무처리</td>
+          </tr>
+          <tr>
+            <td><span class="badge-t2">T2</span></td>
+            <td>처리구</td>
+            <td>4 ppm</td>
+            <td>7일 간격 공급</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="dosage-note">
+        <strong>투입 기준</strong>
+        페라스타 그린 0.7mL / 10L 기준 · 7일 간격으로 과초산 4ppm 용액 공급
+      </div>
+    </div>
+  </div>
+
+  <!-- 사진 비교 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📷</div>
+      <h2>사진 비교</h2>
+    </div>
+    <div class="card-body" style="padding: 0;">
+      <!-- 컬럼 레이블 -->
+      <div class="photo-section-head">
+        <div class="photo-col-label">파종 36일</div>
+        <div class="photo-col-label">파종 43일</div>
+        <div class="photo-col-label">파종 43일 (지하부)</div>
+      </div>
+      <!-- 사진 그리드 -->
+      <div class="photo-grid-wrap">
+
+        <!-- T1 Row -->
+        <div class="photo-cell">
+          <!-- 사진 삽입 시: <img src="사진1_주소" alt="T1 파종36일"> -->
+          <div class="photo-placeholder">
+            <div class="ph-txt"><img src="https://kajungil.github.io/PERA/1.png"></div>
+          </div>
+          <div class="photo-row-label">T1 대조구</div>
+          <div class="photo-num">#1</div>
+        </div>
+        <div class="photo-cell">
+          <div class="photo-placeholder">
+          <div class="ph-txt"><img src="https://kajungil.github.io/PERA/2.png"></div>
+          </div>
+          <div class="photo-num">#2</div>
+        </div>
+        <div class="photo-cell">
+          <div class="photo-placeholder">
+            <div class="ph-txt"><img src="https://kajungil.github.io/PERA/3.png"></div>
+          </div>
+          <div class="photo-badge bad">뿌리 갈변&amp;고사 · 녹조 발생 O</div>
+          <div class="photo-num">#3</div>
+        </div>
+
+        <!-- T2 Row -->
+        <div class="photo-cell">
+          <div class="photo-placeholder">
+            <div class="ph-txt"><img src="https://kajungil.github.io/PERA/4.png"></div>
+          </div>
+          <div class="photo-row-label">T2 처리구</div>
+          <div class="photo-num">#4</div>
+        </div>
+        <div class="photo-cell">
+          <div class="photo-placeholder">
+            <div class="ph-txt"><img src="https://kajungil.github.io/PERA/5.png"></div>
+          </div>
+          <div class="photo-num">#5</div>
+        </div>
+        <div class="photo-cell">
+          <div class="photo-placeholder">
+            <div class="ph-txt"><img src="https://kajungil.github.io/PERA/6.png"></div>
+          </div>
+          <div class="photo-badge good">뿌리 양호(흰색) · 녹조 발생 X</div>
+          <div class="photo-num">#6</div>
+        </div>
+
+      </div>
+      <div style="padding: 12px 20px; font-size: 11.5px; color: var(--gray-400); background: var(--gray-100);">
+        ※ 사진 번호 순서: 왼쪽(①파종36일) → 가운데(②43일) → 오른쪽(③43일 지하부) · 위 행(T1 대조구), 아래 행(T2 처리구)
+      </div>
+    </div>
+  </div>
+
+  <!-- 생육 결과 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📊</div>
+      <h2>생육 비교 결과</h2>
+    </div>
+    <div class="card-body">
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>항목</th>
+            <th>대조구 T1 (0 ppm)</th>
+            <th>처리구 T2 (4 ppm)</th>
+            <th>차이</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>생체중</td>
+            <td><span class="val-bad">18.5 g</span></td>
+            <td><span class="val-good up-arrow">252 g</span></td>
+            <td>+1,262%</td>
+          </tr>
+          <tr>
+            <td>엽수</td>
+            <td><span class="val-bad">16.0 ea</span></td>
+            <td><span class="val-good up-arrow">19.6 ea</span></td>
+            <td>+22.5%</td>
+          </tr>
+          <tr>
+            <td>초장</td>
+            <td><span class="val-bad">14.4 cm</span></td>
+            <td><span class="val-good up-arrow">21.8 cm</span></td>
+            <td>+51.4%</td>
+          </tr>
+          <tr>
+            <td>상품율</td>
+            <td><span class="val-bad">매우 낮음</span></td>
+            <td><span class="val-good">약 85%</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 뿌리 및 수질 상태 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🌱</div>
+      <h2>뿌리 및 수질 상태</h2>
+    </div>
+    <div class="card-body">
+      <div class="root-grid">
+        <div class="root-card">
+          <div class="root-card-head bad">❌ 대조구 T1 (0 ppm)</div>
+          <div class="root-card-body">
+            <div class="root-item"><div class="dot-bad"></div>뿌리 갈변 및 고사 발생</div>
+            <div class="root-item"><div class="dot-bad"></div>녹조 다량 발생</div>
+            <div class="root-item"><div class="dot-bad"></div>전반적 생육 불량</div>
+          </div>
+        </div>
+        <div class="root-card">
+          <div class="root-card-head good">✅ 처리구 T2 (4 ppm)</div>
+          <div class="root-card-body">
+            <div class="root-item"><div class="dot-good"></div>뿌리 건강 (백색 유지)</div>
+            <div class="root-item"><div class="dot-good"></div>녹조 발생 억제</div>
+            <div class="root-item"><div class="dot-good"></div>생육 안정 및 균일성 확보</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 주요 관찰 사항 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔍</div>
+      <h2>주요 관찰 사항</h2>
+    </div>
+    <div class="card-body">
+      <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+        <li style="display:flex; gap:10px; align-items:baseline; font-size:14px; color:var(--text-sub);">
+          <span style="color:var(--green-accent); font-weight:700; flex-shrink:0;">01</span>
+          과초산 처리구에서 양액 내 <strong style="color:var(--text-main);">병원균 억제 효과</strong> 확인
+        </li>
+        <li style="display:flex; gap:10px; align-items:baseline; font-size:14px; color:var(--text-sub);">
+          <span style="color:var(--green-accent); font-weight:700; flex-shrink:0;">02</span>
+          뿌리 상태 개선 → <strong style="color:var(--text-main);">지상부 생육 향상</strong>으로 이어짐
+        </li>
+        <li style="display:flex; gap:10px; align-items:baseline; font-size:14px; color:var(--text-sub);">
+          <span style="color:var(--green-accent); font-weight:700; flex-shrink:0;">03</span>
+          초기 생육기 일부 <strong style="color:var(--text-main);">팁번 발생</strong> 있었으나 이후 안정화
+          <span style="font-size:12px; color:var(--gray-400); margin-left:4px;">(Ca 결핍성 생리장해로 판단)</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 결론 및 향후 계획 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">✅</div>
+      <h2>결론 및 향후 계획</h2>
+    </div>
+    <div class="card-body">
+      <div class="conclusion-grid">
+        <div class="concl-item">
+          <div class="concl-icon">🧴</div>
+          <div class="concl-text">
+            <strong>양액 위생 관리</strong>
+            수경재배 양액 내 위생 관리에 효과적으로 적용 가능
+          </div>
+        </div>
+        <div class="concl-item">
+          <div class="concl-icon">🌾</div>
+          <div class="concl-text">
+            <strong>생육 개선 기여</strong>
+            뿌리 건강 유지 및 작물 생육 개선에 직접 기여
+          </div>
+        </div>
+        <div class="concl-item">
+          <div class="concl-icon">🚫</div>
+          <div class="concl-text">
+            <strong>녹조 & 부패 방지</strong>
+            녹조 억제 및 뿌리 부패 방지 효과 확인
+          </div>
+        </div>
+        <div class="concl-item">
+          <div class="concl-icon">📈</div>
+          <div class="concl-text">
+            <strong>상품성 향상</strong>
+            상품율 85% 달성으로 실질적 현장 적용 가능성 확인
+          </div>
+        </div>
+      </div>
+
+      <div class="future-box">
+        <div class="label">향후<br>계획</div>
+        <ul class="future-items">
+          <li>농도별 최적 투입량 검증 예정</li>
+          <li>다양한 작물 적용 확대 검토</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /content -->
+
+<div class="footer">
+  CPU · 페라스타 그린(과초산) 수경재배 실증사례 보고서
+</div>
+
+</body>
+</html>
