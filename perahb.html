@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>전라도 흥부식품 적용 사례</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-dark: #1a6b3a;
+    --green: #2d8a52;
+    --green-mid: #3aaa68;
+    --green-light: #e8f6ee;
+    --green-border: #b6dfc6;
+    --navy: #1a2e3a;
+    --text: #2c3e35;
+    --muted: #6b7c75;
+    --border: #dde8e2;
+    --bg: #f7faf8;
+    --white: #ffffff;
+    --red: #c0392b;
+    --gold: #b8860b;
+    --gold-bg: #fffaed;
+    --gold-border: #e8c84a;
+  }
+
+  body {
+    background: var(--bg);
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--text);
+    padding: 40px 20px;
+  }
+
+  .wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(0,40,20,0.08);
+  }
+
+  /* ── Hero Banner ── */
+  .hero {
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
+    padding: 40px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    right: -30px; bottom: -40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    right: 60px; bottom: 20px;
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.9);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-size: 24px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.35;
+    margin-bottom: 8px;
+  }
+  .hero p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.78);
+  }
+
+  /* ── Body ── */
+  .body { padding: 40px 48px; }
+
+  /* ── Section Number ── */
+  .sec-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .sec-num {
+    width: 28px; height: 28px;
+    background: var(--green);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .sec-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .section { margin-bottom: 36px; }
+
+  /* ── Info Cards Row ── */
+  .info-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .info-card {
+    flex: 1;
+    min-width: 240px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 18px 20px;
+  }
+  .info-card .card-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--green);
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .info-card ul {
+    list-style: none;
+    font-size: 13.5px;
+    line-height: 2;
+    color: var(--text);
+  }
+  .info-card ul li {
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+  }
+  .info-card ul li::before {
+    content: '·';
+    color: var(--green);
+    font-weight: 900;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+  .info-card.pain { border-left: 3px solid var(--red); }
+  .info-card.pain .card-label { color: var(--red); }
+  .info-card.pain ul li::before { color: var(--red); }
+
+  /* ── Solution ── */
+  .solution-wrap {
+    background: var(--green-light);
+    border: 1px solid var(--green-border);
+    border-radius: 4px;
+    padding: 22px 24px;
+  }
+  .solution-product {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .solution-cols {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .solution-col { flex: 1; min-width: 200px; }
+  .solution-col h4 {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--green-border);
+  }
+  .solution-col ul {
+    list-style: none;
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--text);
+  }
+  .solution-col ul li {
+    padding-left: 14px;
+    position: relative;
+  }
+  .solution-col ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-size: 10px;
+    top: 4px;
+  }
+
+  /* ── Effect Cards ── */
+  .effect-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+    gap: 12px;
+  }
+  .effect-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .effect-card .eicon { font-size: 28px; margin-bottom: 10px; }
+  .effect-card .etitle {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .effect-card .edesc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* ── Quote ── */
+  .quote {
+    background: var(--green-light);
+    border-left: 3px solid var(--green);
+    padding: 16px 20px;
+    margin-bottom: 28px;
+    font-size: 13px;
+    color: var(--green-dark);
+    font-style: italic;
+    line-height: 1.8;
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* ── Award ── */
+  .award {
+    background: var(--gold-bg);
+    border: 2px solid var(--gold-border);
+    border-radius: 4px;
+    padding: 26px 24px;
+    text-align: center;
+  }
+  .award-icon { font-size: 30px; margin-bottom: 10px; }
+  .award-sub {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .award-body {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.8;
+  }
+  .award-body .year { color: var(--red); }
+  .award-body .main { font-size: 17px; font-weight: 900; color: var(--green-dark); }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 30px 0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-tag">김치 / 신선식품 적용분야 · Best Practice Case Study</div>
+    <h1>[적용 사례] 전라도 흥부식품</h1>
+    <p>생김치 미생물 제어 한계 극복 및 공정 효율화</p>
+  </div>
+
+  <div class="body">
+
+    <!-- 01 기업 개요 & Pain Point -->
+    <div class="section">
+      <div class="sec-head">
+        <div class="sec-num">01</div>
+        <div class="sec-title">기업 개요 및 도입 배경</div>
+      </div>
+      <div class="info-row">
+        <div class="info-card">
+          <div class="card-label">기업 개요</div>
+          <ul>
+            <li>업체명: 전라도 흥부식품</li>
+            <li>업종: 김치 제조업</li>
+            <li>생김치 비중이 높은 제조 구조 (비가열 공정)</li>
+          </ul>
+        </div>
+        <div class="info-card pain">
+          <div class="card-label">도입 배경 (Pain Point)</div>
+          <ul>
+            <li>토양 유래 미생물 및 병원성 세균 지속 노출</li>
+            <li>미생물 제어 수준의 구조적 한계</li>
+            <li>별도 헹굼 공정으로 설비·용수 사용 증가</li>
+            <li>전체 공정 리드타임(Lead time) 증가</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 02 솔루션 -->
+    <div class="section">
+      <div class="sec-head">
+        <div class="sec-num">02</div>
+        <div class="sec-title">솔루션 적용 및 공정</div>
+      </div>
+      <div class="solution-wrap">
+        <div class="solution-product">💡 과산화초산 기반 식품용 살균제 <strong>'페라스타'</strong> 도입</div>
+        <div class="solution-cols">
+          <div class="solution-col">
+            <h4>선정 기준</h4>
+            <ul>
+              <li>자연 분해 기작으로 잔류 시에도 안전성 확보</li>
+              <li>헹굼 공정 최소화 가능</li>
+              <li>기존 제조 공정과의 높은 호환성</li>
+            </ul>
+          </div>
+          <div class="solution-col">
+            <h4>적용 공정</h4>
+            <ul>
+              <li>절임배추 및 농산물 세척 후 소독 공정 적용</li>
+              <li>탈수 공정을 통해 자연스럽게 잔류 제거</li>
+              <li>별도 헹굼 공정 없이 즉시 운영 가능</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 03 도입 효과 -->
+    <div class="section">
+      <div class="sec-head">
+        <div class="sec-num">03</div>
+        <div class="sec-title">주요 도입 효과</div>
+      </div>
+      <div class="effect-grid">
+        <div class="effect-card">
+          <div class="eicon">🦠</div>
+          <div class="etitle">미생물 제어 향상</div>
+          <div class="edesc">병원성 세균 불활성화 및 노로바이러스 등 내성 바이러스 강력 대응</div>
+        </div>
+        <div class="effect-card">
+          <div class="eicon">⏱️</div>
+          <div class="etitle">공정 효율 개선</div>
+          <div class="edesc">헹굼 공정 생략으로 공정 단순화, 용수 사용량 감소 및 작업 시간 단축</div>
+        </div>
+        <div class="effect-card">
+          <div class="eicon">💰</div>
+          <div class="etitle">운영 비용 절감</div>
+          <div class="edesc">세척 설비 추가 및 인력 부담 최소화로 장기적 비용 절감 달성</div>
+        </div>
+        <div class="effect-card">
+          <div class="eicon">🥬</div>
+          <div class="etitle">고유의 품질 유지</div>
+          <div class="edesc">소독 공정 후에도 기존 김치 맛·품질에 대한 영향 최소화</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quote -->
+    <div class="quote">
+      "김치는 땅에서 나는 '채소'가 정성이 깃든 어머니의 '손맛'을 만나 만들어지는 푸근한 전통음식입니다.<br>
+      페라스타는 이 겨레적 향수와 본연의 맛을 가장 안전하게 지켜냅니다."
+    </div>
+
+    <!-- Award -->
+    <div class="award">
+      <div class="award-icon">🏆</div>
+      <div class="award-sub">인증 및 핵심 성과</div>
+      <div class="award-body">
+        <span class="year">[2025년 8월]</span> 김치 업계 최초<br>
+        <span class="main">과산화초산 소독공정 HACCP 중요관리점(CCP) 등록</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
