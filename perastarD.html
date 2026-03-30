@@ -41,20 +41,17 @@
 .prs-spec-unit{font-size:13px;color:#636e72;}
 .prs-spec-sep{font-size:14px;color:#b2bec3;}
 
-/* 사용 방법 단일 박스 리스트 */
-.prs-steps{background:#f5f7f6;border-radius:12px;padding:24px 28px;}
-.prs-step{display:flex;align-items:baseline;gap:10px;padding:9px 0;border-bottom:1px solid #e9ecef;font-size:13.5px;line-height:1.7;word-break:keep-all;}
-.prs-step:first-child{padding-top:0;}
-.prs-step:last-child{border-bottom:none;padding-bottom:0;}
-.prs-step-num{font-weight:800;color:#268B7C;flex-shrink:0;min-width:16px;}
-.prs-step-title{font-weight:800;color:#2d3436;white-space:nowrap;}
-.prs-step-sep{color:#b2bec3;margin:0 4px;flex-shrink:0;}
-.prs-step-desc{color:#636e72;}
+/* 사용 방법 단일 박스 리스트 (perastrip 양식 적용) */
+.prs-steps{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+.prs-step{background:#fff;border:1px solid #e9ecef;border-radius:12px;padding:18px 16px;display:flex;align-items:flex-start;gap:12px;}
+.prs-step-num{background:#268B7C;color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0;}
+.prs-step-txt{font-size:13.5px;color:#444;line-height:1.6;word-break:keep-all;}
 
 @media(max-width:768px){
   .prs-header{padding:44px 20px;}
   .prs-sec,.prs-csec{padding:36px 20px;}
   .prs-fg{grid-template-columns:repeat(2,1fr);}
+  .prs-steps{grid-template-columns:1fr;}
 }
 @media(max-width:500px){
   .prs-wrap{border-radius:0;}
@@ -68,14 +65,12 @@
   .prs-tag{font-size:12px;padding:4px 10px;}
   .prs-cin{padding:20px 16px;}
   .prs-bc{font-size:14px;padding:14px 28px;}
-  .prs-steps{padding:20px 16px;}
   .prs-spec-box{padding:20px 16px;}
 }
 </style>
 
 <div class="prs-wrap">
 
-    <!-- HEADER -->
     <div class="prs-header">
         <div class="prs-logo-text">과산화초산 자동희석기</div><br>
         <span class="prs-badge">자동희석 / 농도 조절 / 현장 맞춤형 설계</span>
@@ -86,7 +81,6 @@
         <div class="prs-pkg"><strong>호환 용기</strong> &nbsp;|&nbsp; 페라스타 1L · 5L</div>
     </div>
 
-    <!-- 01 주요 특징 -->
     <div class="prs-sec">
         <div class="prs-head"><span class="prs-num">01</span><h2 class="prs-title">주요 특징</h2></div>
         <div class="prs-fg">
@@ -96,7 +90,6 @@
         </div>
     </div>
 
-    <!-- 02 사용처 -->
     <div class="prs-sec">
         <div class="prs-head"><span class="prs-num">02</span><h2 class="prs-title">사용처</h2></div>
         <div class="prs-sbox">
@@ -111,7 +104,6 @@
         </div>
     </div>
 
-    <!-- 03 제품 크기 -->
     <div class="prs-sec">
         <div class="prs-head"><span class="prs-num">03</span><h2 class="prs-title">제품 크기</h2></div>
         <div class="prs-spec-box">
@@ -134,44 +126,32 @@
         </div>
     </div>
 
-    <!-- 04 사용 방법 -->
     <div class="prs-sec">
         <div class="prs-head"><span class="prs-num">04</span><h2 class="prs-title">사용 방법</h2></div>
         <div class="prs-steps">
             <div class="prs-step">
                 <span class="prs-step-num">1</span>
-                <span class="prs-step-title">원액 장착</span>
-                <span class="prs-step-sep">—</span>
-                <span class="prs-step-desc">페라스타 1L / 5L 용기 개봉 후 노즐을 바닥 끝까지 밀착해 넣습니다.</span>
+                <span class="prs-step-txt"><strong>원액 장착</strong> — 페라스타 1L / 5L 용기 개봉 후 노즐을 바닥 끝까지 밀착해 넣습니다.</span>
             </div>
             <div class="prs-step">
                 <span class="prs-step-num">2</span>
-                <span class="prs-step-title">농도 설정</span>
-                <span class="prs-step-sep">—</span>
-                <span class="prs-step-desc">다이얼을 돌려 과일·야채 소독 적정 범위인 <strong>50~80 ppm</strong>에 맞춥니다.</span>
+                <span class="prs-step-txt"><strong>농도 설정</strong> — 다이얼을 돌려 과일·야채 소독 적정 범위인 <strong>50~80 ppm</strong>에 맞춥니다.</span>
             </div>
             <div class="prs-step">
                 <span class="prs-step-num">3</span>
-                <span class="prs-step-title">다이얼 조절</span>
-                <span class="prs-step-sep">—</span>
-                <span class="prs-step-desc">시계 방향(↻)은 농도 높음, 반시계 방향(↺)은 농도 낮음입니다.</span>
+                <span class="prs-step-txt"><strong>다이얼 조절</strong> — 시계 방향(↻)은 농도 높음, 반시계 방향(↺)은 농도 낮음입니다.</span>
             </div>
             <div class="prs-step">
                 <span class="prs-step-num">4</span>
-                <span class="prs-step-title">거품 확인</span>
-                <span class="prs-step-sep">—</span>
-                <span class="prs-step-desc">희석수에서 미세한 기포가 발생하는지 확인 후 측정을 준비합니다.</span>
+                <span class="prs-step-txt"><strong>거품 확인</strong> — 희석수에서 미세한 기포가 발생하는지 확인 후 측정을 준비합니다.</span>
             </div>
             <div class="prs-step">
                 <span class="prs-step-num">5</span>
-                <span class="prs-step-title">최종 검증</span>
-                <span class="prs-step-sep">—</span>
-                <span class="prs-step-desc">페라스트립 320 시험지로 실측 농도가 설정값과 일치하는지 확인합니다.</span>
+                <span class="prs-step-txt"><strong>최종 검증</strong> — 페라스트립 320 시험지로 실측 농도가 설정값과 일치하는지 확인합니다.</span>
             </div>
         </div>
     </div>
 
-    <!-- 05 전문 상담 및 견적 문의 -->
     <div class="prs-csec">
         <div class="prs-head"><span class="prs-num">05</span><h2 class="prs-title">전문 상담 및 견적 문의</h2></div>
         <div class="prs-cin">
