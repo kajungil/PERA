@@ -1,0 +1,126 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.wrap{padding:1.5rem 0}
+.page-tabs{display:flex;gap:0;margin-bottom:1.5rem;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);overflow:hidden;width:fit-content}
+.tab-btn{padding:8px 20px;border:none;border-right:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all .15s}
+.tab-btn:last-child{border-right:none}
+.tab-btn.active{background:#1D9E75;color:#fff;font-weight:500}
+.page{display:none}
+.page.active{display:block}
+.section-title{font-size:13px;font-weight:500;color:#085041;background:#E1F5EE;border:0.5px solid #9FE1CB;border-radius:var(--border-radius-md);padding:8px 14px;margin-bottom:10px}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;margin-bottom:1.5rem}
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
+col.c-name{width:22%}
+col.c-ppm{width:13%}
+col.c-temp{width:11%}
+col.c-kill{width:17%}
+col.c-time{width:13%}
+col.c-note{width:24%}
+thead tr{background:#E1F5EE}
+thead th{padding:9px 12px;font-weight:500;color:#085041;border-bottom:1px solid #9FE1CB;white-space:nowrap;font-size:12px;text-align:center}
+thead th:first-child{text-align:left}
+tbody tr{border-bottom:0.5px solid var(--color-border-tertiary)}
+tbody tr:hover{background:var(--color-background-secondary)}
+tbody td{padding:7px 12px;color:var(--color-text-primary);font-size:13px;vertical-align:middle;text-align:center}
+tbody td:first-child{text-align:left;font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+tbody td:nth-child(2){text-align:right;font-variant-numeric:tabular-nums}
+tbody td:nth-child(3){text-align:right;font-variant-numeric:tabular-nums}
+tbody td:nth-child(5){text-align:right}
+.badge-green{display:inline-block;padding:2px 8px;border-radius:100px;font-size:11px;font-weight:500;background:#E1F5EE;color:#085041}
+.badge-blue{display:inline-block;padding:2px 8px;border-radius:100px;font-size:11px;font-weight:500;background:#E6F1FB;color:#0C447C}
+.badge-gray{display:inline-block;padding:2px 8px;border-radius:100px;font-size:11px;color:var(--color-text-secondary);background:var(--color-background-secondary)}
+/* 그룹 구분: 첫 행 상단 강조 */
+tr.group-start td{border-top:2px solid #5DCAA5}
+tr.group-start td:first-child{font-weight:500;color:#085041}
+/* 그룹 내 빈 균주 셀 */
+tr.group-mid td:first-child{color:var(--color-text-secondary);font-size:12px}
+tr.single td:first-child{font-weight:500;color:#085041}
+</style>
+
+<div class="wrap">
+<div class="page-tabs">
+  <button class="tab-btn active" onclick="showPage(0)">식품첨가물공전</button>
+  <button class="tab-btn" onclick="showPage(1)">농림축산검역본부</button>
+  <button class="tab-btn" onclick="showPage(2)">EN14476</button>
+</div>
+
+<div class="page active" id="page0">
+  <div class="section-title">1. 식품첨가물공전 살균소독력시험 — 오염조건모사</div>
+  <div class="card">
+    <div class="tbl-wrap">
+      <table>
+        <colgroup><col class="c-name"><col class="c-ppm"><col class="c-temp"><col class="c-kill"><col class="c-time"><col class="c-note"></colgroup>
+        <thead><tr><th>균주</th><th style="text-align:right">농도 (ppm)</th><th style="text-align:right">온도 (℃)</th><th>살균력 기준</th><th style="text-align:right">접촉시간</th><th>비고</th></tr></thead>
+        <tbody>
+          <tr class="group-start"><td>S. typhimurium</td><td>500</td><td>20</td><td><span class="badge-green">&gt;99.9%</span></td><td>5 min</td><td>—</td></tr>
+          <tr class="group-mid"><td></td><td>1,800</td><td>20</td><td><span class="badge-green">&gt;99.9%</span></td><td>15 sec</td><td>—</td></tr>
+
+          <tr class="group-start"><td>L. monocytogenes</td><td>200</td><td>20</td><td><span class="badge-green">&gt;99.9%</span></td><td>5 min</td><td>—</td></tr>
+          <tr class="group-mid"><td></td><td>500</td><td>20</td><td><span class="badge-green">&gt;99.9%</span></td><td>1 min</td><td>—</td></tr>
+          <tr class="group-mid"><td></td><td>1,800</td><td>20</td><td><span class="badge-green">&gt;99.9%</span></td><td>15 sec</td><td>—</td></tr>
+
+          <tr class="single"><td>E. coli</td><td>80</td><td>20</td><td><span class="badge-green">&gt;99.999%</span></td><td>15 sec</td><td>—</td></tr>
+          <tr class="single"><td>S. aureus</td><td>80</td><td>20</td><td><span class="badge-green">&gt;99.999%</span></td><td>15 sec</td><td>—</td></tr>
+          <tr class="single"><td>V. parahaemolyticus</td><td>80</td><td>20</td><td><span class="badge-green">&gt;99.999%</span></td><td>15 sec</td><td>—</td></tr>
+          <tr class="single"><td>C. jejuni</td><td>80</td><td>20</td><td><span class="badge-green">&gt;99.999%</span></td><td>15 sec</td><td>—</td></tr>
+
+          <tr class="group-start"><td>Y. enterocolitica</td><td>30</td><td>20</td><td><span class="badge-green">&gt;99.999%</span></td><td>1 min</td><td><span class="badge-gray">저농도 비교</span></td></tr>
+          <tr class="group-mid"><td></td><td>60</td><td>20</td><td><span class="badge-green">&gt;99.999%</span></td><td>15 sec</td><td><span class="badge-gray">저농도 비교</span></td></tr>
+          <tr class="group-mid"><td></td><td>80</td><td>20</td><td><span class="badge-green">&gt;99.999%</span></td><td>15 sec</td><td>—</td></tr>
+          <tr class="group-mid"><td></td><td>30</td><td>4</td><td><span class="badge-green">&gt;99.999%</span></td><td>2 min</td><td><span class="badge-blue">저온 비교</span></td></tr>
+          <tr class="group-mid"><td></td><td>30</td><td>15</td><td><span class="badge-green">&gt;99.999%</span></td><td>1 min</td><td><span class="badge-blue">저온 비교</span></td></tr>
+
+          <tr class="group-start"><td>B. cereus (spore)</td><td>30</td><td>20</td><td><span class="badge-green">&gt;99.999%</span></td><td>2 min</td><td><span class="badge-gray">저농도 비교</span></td></tr>
+          <tr class="group-mid"><td></td><td>60</td><td>20</td><td><span class="badge-green">&gt;99.999%</span></td><td>15 sec</td><td><span class="badge-gray">저농도 비교</span></td></tr>
+          <tr class="group-mid"><td></td><td>80</td><td>20</td><td><span class="badge-green">&gt;99.999%</span></td><td>15 sec</td><td>—</td></tr>
+          <tr class="group-mid"><td></td><td>60</td><td>4</td><td><span class="badge-green">&gt;99.999%</span></td><td>15 sec</td><td><span class="badge-blue">저온 비교</span></td></tr>
+          <tr class="group-mid"><td></td><td>60</td><td>15</td><td><span class="badge-green">&gt;99.999%</span></td><td>15 sec</td><td><span class="badge-blue">저온 비교</span></td></tr>
+
+          <tr class="single"><td>C. perfringens (spore)</td><td>80</td><td>20</td><td><span class="badge-green">&gt;99.999%</span></td><td>15 sec</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="page" id="page1">
+  <div class="section-title">2. 농림축산검역본부 고시 — 소독제 효력시험 지침</div>
+  <div class="card">
+    <div class="tbl-wrap">
+      <table>
+        <colgroup><col class="c-name"><col class="c-ppm"><col class="c-temp"><col class="c-kill"><col class="c-time"><col class="c-note"></colgroup>
+        <thead><tr><th>균주</th><th style="text-align:right">농도 (ppm)</th><th style="text-align:right">온도 (℃)</th><th>살균력 기준</th><th style="text-align:right">접촉시간</th><th>비고</th></tr></thead>
+        <tbody>
+          <tr class="single"><td>AI (Avian Influenza)</td><td>100</td><td>20</td><td><span class="badge-green">&gt;99.99%</span></td><td>1 min</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="page" id="page2">
+  <div class="section-title">3. EN14476 — 화학 소독제 살바이러스 활성 유럽시험 표준</div>
+  <div class="card">
+    <div class="tbl-wrap">
+      <table>
+        <colgroup><col class="c-name"><col class="c-ppm"><col class="c-temp"><col class="c-kill"><col class="c-time"><col class="c-note"></colgroup>
+        <thead><tr><th>균주</th><th style="text-align:right">농도 (ppm)</th><th style="text-align:right">온도 (℃)</th><th>살균력 기준</th><th style="text-align:right">접촉시간</th><th>비고</th></tr></thead>
+        <tbody>
+          <tr class="group-start"><td>Norovirus</td><td>50</td><td>10</td><td><span class="badge-green">&gt;99.99%</span></td><td>5 min</td><td><span class="badge-blue">저온</span></td></tr>
+          <tr class="group-mid"><td></td><td>80</td><td>10</td><td><span class="badge-green">&gt;99.99%</span></td><td>5 min</td><td><span class="badge-blue">저온</span></td></tr>
+          <tr class="group-mid"><td></td><td>100</td><td>10</td><td><span class="badge-green">&gt;99.99%</span></td><td>2 min</td><td><span class="badge-blue">저온</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+function showPage(idx){
+  document.querySelectorAll('.page').forEach((p,i)=>p.classList.toggle('active',i===idx));
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',i===idx));
+}
+</script>
