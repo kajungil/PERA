@@ -1,0 +1,439 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=DM+Mono:wght@400;500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green:       #1a6b5e;
+  --green-mid:   #c4ddd9;
+  --green-light: #edf5f3;
+  --ink:         #1c1c1c;
+  --mid:         #6b6b6b;
+  --faint:       #9a9a9a;
+  --rule-heavy:  #b0b0b0;
+  --rule:        #e2e2e2;
+  --bg:          #f7f7f5;
+  --white:       #ffffff;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.top-bar { width: 100%; height: 4px; background: var(--green); }
+
+.wrap { max-width: 800px; margin: 0 auto; padding: 0 28px; }
+
+/* HEADER */
+.site-header {
+  background: var(--white);
+  border-bottom: 1px solid var(--rule-heavy);
+  padding: 22px 0 26px;
+}
+.header-meta {
+  max-width: 800px; margin: 0 auto; padding: 0 28px;
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 18px;
+}
+.header-category {
+  font-family: 'DM Mono', monospace; font-size: 10.5px;
+  letter-spacing: 0.12em; color: var(--green);
+}
+.header-tag {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 0.1em; color: var(--green);
+  background: var(--green-light); border: 1px solid var(--green-mid);
+  padding: 4px 10px; border-radius: 2px;
+}
+.header-logo { max-width: 800px; margin: 0 auto; padding: 0 28px; text-align: center; }
+.header-logo img { max-width: 250px; width: 100%; height: auto; }
+
+/* HERO */
+.hero {
+  background: var(--white);
+  border-bottom: 2px solid var(--ink);
+  padding: 40px 0 36px;
+}
+.hero-inner {
+  max-width: 800px; margin: 0 auto; padding: 0 28px;
+  display: grid; grid-template-columns: 1fr 185px; gap: 44px; align-items: start;
+}
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 0.18em; color: var(--faint); margin-bottom: 10px;
+}
+.hero-title {
+  font-family: 'Noto Serif KR', serif; font-size: 27px; font-weight: 700;
+  line-height: 1.4; color: var(--ink); margin-bottom: 13px; word-break: keep-all;
+}
+.hero-title em { font-style: normal; color: var(--green); }
+.hero-desc { font-size: 13.5px; color: var(--mid); line-height: 1.9; word-break: keep-all; }
+.aside-label {
+  font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em;
+  color: var(--faint); text-transform: uppercase;
+  padding-bottom: 8px; border-bottom: 1px solid var(--rule-heavy); margin-bottom: 14px;
+}
+.spec-row { display: flex; flex-direction: column; gap: 11px; }
+.spec-item { display: flex; flex-direction: column; gap: 2px; }
+.spec-key { font-size: 10px; color: var(--faint); }
+.spec-val { font-size: 12.5px; font-weight: 600; color: var(--ink); }
+
+/* SECTIONS */
+.content-wrap { background: var(--white); }
+.section {
+  max-width: 800px; margin: 0 auto; padding: 36px 28px;
+  border-bottom: 1px solid var(--rule-heavy);
+}
+.section-head {
+  display: flex; align-items: baseline; gap: 12px;
+  margin-bottom: 22px; padding-bottom: 13px;
+  border-bottom: 1px solid var(--rule);
+}
+.section-title {
+  font-family: 'Noto Serif KR', serif; font-size: 17px;
+  font-weight: 700; color: var(--ink);
+}
+.section-num { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--faint); }
+
+/* FEATURES */
+.features-list { list-style: none; }
+.features-list li {
+  display: flex; align-items: baseline; gap: 14px;
+  padding: 12px 0; border-bottom: 1px solid var(--rule);
+  font-size: 13.5px; color: var(--ink); line-height: 1.65; word-break: keep-all;
+}
+.features-list li:last-child { border-bottom: none; padding-bottom: 0; }
+.feat-num {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  color: var(--green); min-width: 18px; flex-shrink: 0;
+}
+
+/* USAGE + TABLE */
+.sub-label {
+  font-family: 'DM Mono', monospace; font-size: 9.5px;
+  letter-spacing: 0.14em; color: var(--faint); text-transform: uppercase;
+  margin-bottom: 9px;
+}
+.usage-row {
+  display: inline-flex; align-items: center;
+  font-size: 13.5px; font-weight: 600; color: var(--green);
+  background: var(--green-light); border-left: 3px solid var(--green);
+  padding: 10px 15px; border-radius: 0 3px 3px 0; margin-bottom: 26px;
+}
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 18px; }
+.data-table thead tr { border-top: 1.5px solid var(--ink); border-bottom: 1px solid var(--rule-heavy); }
+.data-table th {
+  padding: 9px 14px; text-align: left; font-size: 10px;
+  letter-spacing: 0.08em; font-weight: 500; color: var(--mid);
+}
+.data-table td { padding: 12px 14px; border-bottom: 1px solid var(--rule); vertical-align: middle; }
+.data-table tbody tr:last-child td { border-bottom: none; }
+.data-table td:first-child { color: var(--mid); font-size: 12.5px; width: 150px; }
+.data-table td:last-child { font-family: 'DM Mono', monospace; font-weight: 500; }
+.note-row {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 13px 15px; background: var(--green-light);
+  border-left: 3px solid var(--green-mid);
+  font-size: 12.5px; line-height: 1.75; color: var(--mid); word-break: keep-all;
+}
+.note-dot { color: var(--green); flex-shrink: 0; margin-top: 2px; }
+
+/* DOWNLOADS */
+.dl-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--rule-heavy); border-radius: 3px; overflow: hidden;
+}
+.dl-item {
+  display: flex; flex-direction: column; padding: 18px 16px;
+  text-decoration: none; background: var(--white);
+  border-right: 1px solid var(--rule); transition: background 0.15s;
+}
+.dl-item:last-child { border-right: none; }
+.dl-item:hover { background: var(--green-light); }
+.dl-type {
+  font-family: 'DM Mono', monospace; font-size: 9px;
+  letter-spacing: 0.16em; color: var(--faint); text-transform: uppercase; margin-bottom: 6px;
+}
+.dl-name { font-size: 13px; font-weight: 600; color: var(--ink); flex: 1; line-height: 1.45; word-break: keep-all; margin-bottom: 14px; }
+.dl-arrow { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--green); }
+
+/* CALCULATOR */
+.calc-box { border: 1px solid var(--rule-heavy); border-radius: 3px; overflow: hidden; }
+.calc-fields {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid var(--rule-heavy);
+}
+.calc-field { padding: 16px 16px 14px; border-right: 1px solid var(--rule); }
+.calc-field:last-child { border-right: none; }
+.calc-label {
+  display: block; font-family: 'DM Mono', monospace; font-size: 9px;
+  letter-spacing: 0.14em; color: var(--faint); text-transform: uppercase; margin-bottom: 9px;
+}
+.calc-fixed { font-size: 13px; font-weight: 600; color: var(--mid); padding: 7px 0; border-bottom: 1.5px solid var(--rule-heavy); }
+.calc-input-wrap { display: flex; align-items: center; gap: 4px; border-bottom: 1.5px solid var(--ink); padding-bottom: 3px; }
+.calc-input {
+  flex: 1; border: none; outline: none;
+  font-size: 20px; font-family: 'DM Mono', monospace; font-weight: 500;
+  color: var(--ink); background: transparent; padding: 3px 0; min-width: 0;
+}
+.calc-unit { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid); flex-shrink: 0; }
+.calc-btn {
+  display: block; width: 100%; padding: 13px;
+  background: var(--green); color: var(--white); border: none;
+  font-family: 'Noto Sans KR', sans-serif; font-size: 13px; font-weight: 700;
+  letter-spacing: 0.05em; cursor: pointer; transition: background 0.15s;
+}
+.calc-btn:hover { background: #155e52; }
+.calc-result {
+  display: none; padding: 22px 20px 18px;
+  border-top: 1px solid var(--rule); background: var(--green-light); text-align: center;
+}
+.calc-result-label {
+  font-family: 'DM Mono', monospace; font-size: 9px;
+  letter-spacing: 0.18em; color: var(--green); text-transform: uppercase; margin-bottom: 7px;
+}
+.calc-result-value {
+  font-family: 'DM Mono', monospace; font-size: 36px; font-weight: 500;
+  color: var(--ink); line-height: 1; margin-bottom: 6px;
+}
+.calc-result-unit { font-size: 15px; color: var(--mid); }
+.calc-result-sub { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid); margin-top: 7px; }
+.calc-note {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 12px 16px; border-top: 1px solid var(--rule);
+  font-size: 12px; color: var(--mid); line-height: 1.7; word-break: keep-all;
+}
+
+/* CONTACT */
+.contact-section { max-width: 800px; margin: 0 auto; padding: 36px 28px; }
+.contact-inner { display: grid; grid-template-columns: 1fr auto; gap: 36px; align-items: center; }
+.contact-copy h3 {
+  font-family: 'Noto Serif KR', serif; font-size: 17px; font-weight: 700;
+  line-height: 1.55; margin-bottom: 7px; word-break: keep-all;
+}
+.contact-copy p { font-size: 12.5px; color: var(--mid); line-height: 1.8; word-break: keep-all; }
+.contact-btn {
+  display: inline-block; background: var(--green); color: var(--white);
+  text-decoration: none; font-size: 13px; font-weight: 700;
+  padding: 13px 26px; border-radius: 2px; white-space: nowrap; transition: background 0.15s;
+}
+.contact-btn:hover { background: #155e52; }
+.contact-note { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--faint); text-align: center; margin-top: 7px; }
+
+/* FOOTER */
+.site-footer { border-top: 2px solid var(--ink); padding: 18px 0 26px; background: var(--white); }
+.footer-inner { max-width: 800px; margin: 0 auto; padding: 0 28px; display: flex; justify-content: space-between; align-items: center; }
+.footer-brand { font-family: 'Noto Serif KR', serif; font-size: 13.5px; font-weight: 700; color: var(--ink); }
+.footer-meta { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--faint); letter-spacing: 0.08em; }
+
+/* RESPONSIVE */
+@media (max-width: 580px) {
+  .wrap, .section, .contact-section, .header-meta, .header-logo, .hero-inner, .footer-inner { padding-left: 18px; padding-right: 18px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 24px; }
+  .hero-aside { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; background: var(--green-light); padding: 16px; border-radius: 3px; }
+  .aside-label { display: none; }
+  .hero-title { font-size: 22px; }
+  .calc-fields { grid-template-columns: 1fr; }
+  .calc-field { border-right: none; border-bottom: 1px solid var(--rule); }
+  .calc-field:last-child { border-bottom: none; }
+  .dl-grid { grid-template-columns: 1fr; }
+  .dl-item { border-right: none; border-bottom: 1px solid var(--rule); }
+  .dl-item:last-child { border-bottom: none; }
+  .contact-inner { grid-template-columns: 1fr; gap: 18px; }
+  .header-meta { flex-wrap: wrap; gap: 8px; }
+}
+</style>
+
+<div class="top-bar"></div>
+
+<header class="site-header">
+  <div class="header-meta">
+    <span class="header-category">식품살균제 · 페라스타 시리즈</span>
+    <span class="header-tag">HEDP 無첨가</span>
+  </div>
+  <div class="header-logo">
+    <img src="https://ik.imagekit.io/syjhpnc/페라스타 아이안심.PNG" alt="페라스타 아이안심">
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow">과산화초산 6% · 식품용 살균제</p>
+      <h1 class="hero-title">아이들 먹거리를 위한<br><em>친환경 살균제</em></h1>
+      <p class="hero-desc">
+        페라스타 아이안심은 과일과 야채의 살균·소독에 최적화된
+        과산화초산 6% 기반의 식품용 살균제입니다. HEDP를 첨가하지 않아
+        아이들 먹거리에 맞게 설계되었으며, KGMP 인증 시설에서 생산됩니다.
+      </p>
+    </div>
+    <div class="hero-aside">
+      <div class="aside-label">제품 사양</div>
+      <div class="spec-row">
+        <div class="spec-item"><span class="spec-key">유효 성분</span><span class="spec-val">과산화초산 6%</span></div>
+        <div class="spec-item"><span class="spec-key">포장 단위</span><span class="spec-val">1L · 5L · 20L · 1,000L</span></div>
+        <div class="spec-item"><span class="spec-key">용도</span><span class="spec-val">식품살균제</span></div>
+        <div class="spec-item"><span class="spec-key">생산 기준</span><span class="spec-val">KGMP 인증</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">주요 특징</h2>
+      <span class="section-num">08 항목</span>
+    </div>
+    <ul class="features-list">
+      <li><span class="feat-num">01</span>HEDP 無첨가로 아이들 먹거리를 위한 맞춤 설계</li>
+      <li><span class="feat-num">02</span>세균, 바이러스, 진균, 아포균에 효과적</li>
+      <li><span class="feat-num">03</span>바이오필름 제거에 효과적</li>
+      <li><span class="feat-num">04</span>단시간에 강력한 살균 효과 발휘</li>
+      <li><span class="feat-num">05</span>환경 영향(유기물, 온도)에 대한 강한 안정성</li>
+      <li><span class="feat-num">06</span>소독 부산물 및 거품 발생 없음</li>
+      <li><span class="feat-num">07</span>사용 후 별도 제거 공정 불필요</li>
+      <li><span class="feat-num">08</span>KGMP 인증 시설 생산</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">용도 및 사용 방법</h2>
+    </div>
+    <p class="sub-label">적용 대상</p>
+    <div class="usage-row">과일 · 야채의 살균 · 소독</div>
+    <p class="sub-label">희석 기준</p>
+    <table class="data-table">
+      <thead>
+        <tr><th>구분</th><th>과일 · 야채</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>희석 비율</td><td>1,200배 이상</td></tr>
+        <tr><td>과산화초산 농도</td><td>50 ppm 이하</td></tr>
+      </tbody>
+    </table>
+    <div class="note-row">
+      <span class="note-dot">▪</span>
+      <span>사용 후 과일과 야채 표면의 희석액을 털어내거나 흘러내리도록 하여 제거하십시오.</span>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">관련 자료 다운로드</h2>
+    </div>
+    <div class="dl-grid">
+      <a class="dl-item" href="http://perastar.webmind.kr/manager/data/download.php?file1=페라스타10_품목제조보고_1773990715_915.pdf&f_folder=2026&fileName=페라스타10 품목제조보고.pdf" target="_blank">
+        <div class="dl-type">PDF</div>
+        <div class="dl-name">품목제조보고서</div>
+        <div class="dl-arrow">다운로드 →</div>
+      </a>
+      <a class="dl-item" href="http://perastar.webmind.kr/manager/data/download.php?file1=페라스타10_자가품질_성적서_1773987338_617.pdf&f_folder=2026&fileName=페라스타10 자가품질 성적서.pdf" target="_blank">
+        <div class="dl-type">PDF</div>
+        <div class="dl-name">자가품질성적서</div>
+        <div class="dl-arrow">다운로드 →</div>
+      </a>
+      <a class="dl-item" href="http://perastar.webmind.kr/manager/data/download.php?file1=페라스타10_msds_1773987290_239.pdf&f_folder=2026&fileName=페라스타10 msds.pdf" target="_blank">
+        <div class="dl-type">PDF</div>
+        <div class="dl-name">MSDS</div>
+        <div class="dl-arrow">다운로드 →</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">희석 계산기</h2>
+    </div>
+    <p style="font-size:12.5px; color:var(--mid); margin-bottom:16px; line-height:1.7;">
+      물의 양을 입력하면 필요한 원액량을 자동으로 계산합니다.
+    </p>
+    <div class="calc-box">
+      <div class="calc-fields">
+        <div class="calc-field">
+          <label class="calc-label">제품 농도</label>
+          <div class="calc-fixed">과산화초산 6%</div>
+        </div>
+        <div class="calc-field">
+          <label class="calc-label">희석 배율</label>
+          <div class="calc-input-wrap">
+            <input type="number" id="calc-ratio" class="calc-input" value="1200" min="1">
+            <span class="calc-unit">배</span>
+          </div>
+        </div>
+        <div class="calc-field">
+          <label class="calc-label">물의 양</label>
+          <div class="calc-input-wrap">
+            <input type="number" id="calc-water" class="calc-input" value="10" min="0.1" step="0.1">
+            <span class="calc-unit">L</span>
+          </div>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcDilution()">계산하기</button>
+      <div class="calc-result" id="calc-result">
+        <div class="calc-result-label">필요한 원액량</div>
+        <div class="calc-result-value"><span id="calc-ml">—</span>&thinsp;<span class="calc-result-unit" id="calc-unit">mL</span></div>
+        <div class="calc-result-sub" id="calc-sub"></div>
+      </div>
+      <div class="calc-note">
+        <span class="note-dot">▪</span>
+        <span>과일·야채 살균 시 권장 배율은 <strong>1,200배 이상</strong> (과산화초산 50 ppm 이하)입니다.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="contact-inner">
+      <div class="contact-copy">
+        <h3>대량 구매 및 도입 관련<br>전문 상담을 도와드립니다.</h3>
+        <p>제품 특성, 도입 규모, 맞춤 견적까지 담당자가 직접 안내해 드립니다.</p>
+      </div>
+      <div>
+        <a class="contact-btn" href="http://perastar.webmind.kr/common/contact/write.php" target="_blank">실시간 견적 문의</a>
+        <p class="contact-note">담당자 직접 응대</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-brand">페라스타 아이안심</span>
+    <span class="footer-meta">식품살균제 · 과산화초산 6%</span>
+  </div>
+</footer>
+
+<script>
+function calcDilution() {
+  const ratio = parseFloat(document.getElementById('calc-ratio').value);
+  const water = parseFloat(document.getElementById('calc-water').value);
+  const result = document.getElementById('calc-result');
+  const mlEl   = document.getElementById('calc-ml');
+  const unitEl = document.getElementById('calc-unit');
+  const subEl  = document.getElementById('calc-sub');
+  if (!ratio || !water || ratio < 1 || water <= 0) return;
+  const productMl = (water / ratio) * 1000;
+  if (productMl >= 1000) {
+    const l = productMl / 1000;
+    mlEl.textContent   = l % 1 === 0 ? l.toFixed(0) : l.toFixed(2).replace(/0+$/, '');
+    unitEl.textContent = 'L';
+    subEl.textContent  = `(${productMl.toFixed(1)} mL) — 물 ${water}L 기준, ${ratio}배 희석`;
+  } else {
+    mlEl.textContent   = productMl < 1 ? productMl.toFixed(2) : productMl.toFixed(1);
+    unitEl.textContent = 'mL';
+    subEl.textContent  = `물 ${water}L 기준, ${ratio}배 희석`;
+  }
+  result.style.display = 'block';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Enter') calcDilution(); });
+</script>
