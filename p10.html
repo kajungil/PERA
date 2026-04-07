@@ -53,27 +53,29 @@
 .prs-usebox{background:#f5f7f6;border-radius:12px;padding:24px 28px;font-size:14px;color:#636e72;line-height:1.9;word-break:keep-all;}
 .prs-usebox ul{margin:0;padding-left:18px;}
 
-/* ===== 전체 레이아웃 ===== */
+/* ===== 전체 레이아웃 (2컬럼 flex - iFrame 호환) ===== */
 .prs-layout {
-    max-width: 900px;
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    max-width: 1120px;
     margin: 0 auto;
-    position: relative;
 }
 
 .prs-main {
-    width: 100%;
+    flex: 1;
+    min-width: 0;
 }
 
-/* ===== 오른쪽 fixed 사이드바 (게시판 환경 호환) ===== */
+/* ===== 오른쪽 사이드바 (iFrame 내부 스크롤 기준 sticky) ===== */
 .prs-sidebar {
-    width: 210px;
-    position: fixed;
-    top: 50%;
-    right: max(16px, calc(50% - 660px));
-    transform: translateY(-50%);
-    padding: 0;
+    width: 220px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 16px;
+    align-self: flex-start;
+    padding: 20px 16px;
     font-family: 'Pretendard', -apple-system, sans-serif;
-    z-index: 900;
 }
 
 .prs-sidebar-inner {
@@ -166,26 +168,21 @@
     margin-top: 2px;
 }
 
-/* ===== 모바일 하단 고정바 ===== */
+/* ===== 모바일 상단 버튼바 (iFrame 안에서도 작동) ===== */
 .prs-mobile-bar {
     display: none;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
     background: #fff;
-    border-top: 1px solid #e0e8e6;
-    box-shadow: 0 -3px 16px rgba(0,0,0,0.09);
+    border-bottom: 1px solid #e0e8e6;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
     font-family: 'Pretendard', -apple-system, sans-serif;
-    padding: 10px 16px 14px;
+    padding: 10px 16px;
     box-sizing: border-box;
 }
 
 .prs-mobile-bar-inner {
     display: flex;
     gap: 10px;
-    max-width: 480px;
+    max-width: 600px;
     margin: 0 auto;
 }
 
@@ -194,7 +191,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 13px 10px;
+    padding: 11px 10px;
     border: 1.5px solid #268B7C;
     border-radius: 10px;
     background: #f9fcfb;
@@ -213,7 +210,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 13px 10px;
+    padding: 11px 10px;
     background: #268B7C;
     border-radius: 10px;
     color: #fff;
@@ -230,19 +227,13 @@
 /* 자료 팝업 */
 .prs-mobile-docs-popup {
     display: none;
-    position: fixed;
-    bottom: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 32px);
-    max-width: 480px;
-    z-index: 999;
     background: #fff;
     border: 1.5px solid #dde4e2;
     border-radius: 14px;
-    box-shadow: 0 -4px 24px rgba(0,0,0,0.12);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
     padding: 18px 18px 14px;
     box-sizing: border-box;
+    margin: 0 16px 8px;
 }
 
 .prs-mobile-docs-popup.open { display: block; }
@@ -274,26 +265,13 @@
 
 .prs-mobile-doc-link:last-child { margin-bottom: 0; }
 
-.prs-mobile-spacer {
-    display: none;
-    height: 80px;
-}
+.prs-mobile-spacer { display: none; }
 
 /* ===== 반응형 ===== */
-@media(max-width:1200px) {
+@media(max-width:700px) {
+    .prs-layout { display: block; }
     .prs-sidebar { display: none; }
-}
-
-@media(max-width:960px) {
-    .prs-sidebar { display: none; }
-}
-
-@media(max-width:1200px) {
     .prs-mobile-bar { display: block; }
-    .prs-mobile-spacer { display: block; }
-}
-
-@media(max-width:900px) {
     .prs-wrap { border-radius: 0; }
 }
 
@@ -323,7 +301,7 @@
 }
 </style>
 
-<!-- 모바일 하단 고정바 -->
+<!-- 모바일 상단 버튼바 -->
 <div class="prs-mobile-bar">
     <div class="prs-mobile-bar-inner">
         <button class="prs-mobile-docs-btn" id="mobileDocsToggle" onclick="toggleDocs()">
@@ -335,7 +313,7 @@
     </div>
 </div>
 
-<!-- 자료 팝업 -->
+<!-- 자료 팝업 (상단바 아래 펼쳐짐) -->
 <div class="prs-mobile-docs-popup" id="mobileDocsPopup">
     <div class="prs-popup-label">관련자료 다운로드</div>
     <a href="#" class="prs-mobile-doc-link">품목제조보고서</a>
@@ -509,8 +487,6 @@
 
 </div>
 
-<div class="prs-mobile-spacer"></div>
-
 <script>
 function toggleDocs() {
     document.getElementById('mobileDocsPopup').classList.toggle('open');
@@ -518,7 +494,7 @@ function toggleDocs() {
 document.addEventListener('click', function(e) {
     const popup = document.getElementById('mobileDocsPopup');
     const toggle = document.getElementById('mobileDocsToggle');
-    if (popup.classList.contains('open') && !popup.contains(e.target) && !toggle.contains(e.target)) {
+    if (popup && popup.classList.contains('open') && !popup.contains(e.target) && !toggle.contains(e.target)) {
         popup.classList.remove('open');
     }
 });
