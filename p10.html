@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>페라스타10(Perasta10) 상세페이지</title>
 </head>
-<body style="margin:0;padding:0;background:#f8f9fa;">
+<body style="margin:0;padding:0;background:transparent;">
 
 <style>
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
@@ -55,29 +55,25 @@
 
 /* ===== 전체 레이아웃 ===== */
 .prs-layout {
-    display: flex;
-    align-items: flex-start;
-    max-width: 1160px;
+    max-width: 900px;
     margin: 0 auto;
     position: relative;
 }
 
 .prs-main {
-    flex: 1;
-    min-width: 0;
-    order: 1;
+    width: 100%;
 }
 
-/* ===== 오른쪽 스티키 사이드바 ===== */
+/* ===== 오른쪽 fixed 사이드바 (게시판 환경 호환) ===== */
 .prs-sidebar {
     width: 210px;
-    flex-shrink: 0;
-    order: 2;
-    position: sticky;
-    top: 24px;
-    align-self: flex-start;
-    padding: 24px 16px;
+    position: fixed;
+    top: 50%;
+    right: max(16px, calc(50% - 660px));
+    transform: translateY(-50%);
+    padding: 0;
     font-family: 'Pretendard', -apple-system, sans-serif;
+    z-index: 900;
 }
 
 .prs-sidebar-inner {
@@ -284,15 +280,20 @@
 }
 
 /* ===== 반응형 ===== */
+@media(max-width:1200px) {
+    .prs-sidebar { display: none; }
+}
+
 @media(max-width:960px) {
-    .prs-sidebar { width: 180px; }
+    .prs-sidebar { display: none; }
+}
+
+@media(max-width:1200px) {
+    .prs-mobile-bar { display: block; }
+    .prs-mobile-spacer { display: block; }
 }
 
 @media(max-width:900px) {
-    .prs-layout { display: block; }
-    .prs-sidebar { display: none; }
-    .prs-mobile-bar { display: block; }
-    .prs-mobile-spacer { display: block; }
     .prs-wrap { border-radius: 0; }
 }
 
@@ -345,7 +346,7 @@
 <!-- 메인 레이아웃 -->
 <div class="prs-layout">
 
-    <!-- 본문 (왼쪽) -->
+    <!-- 본문 -->
     <div class="prs-main">
         <div class="prs-wrap">
 
